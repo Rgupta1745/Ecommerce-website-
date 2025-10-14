@@ -16,11 +16,13 @@
             height: 100vh;
 
         }
-        .upper{
+
+        .upper {
             display: flex;
             justify-content: center;
             gap: 100px;
         }
+
         .txt {
             font-size: 100px;
             text-align: center;
@@ -58,37 +60,54 @@
             transition: 2s;
         }
 
-        #cartbutton{
-            width: 39px;
-            height: 39px;
-            border-radius: 100px;
-            background-color: rgb(5, 5, 219);
+        /* Common style for both buttons */
+        #cartbutton,
+        #wishbutton {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
             color: white;
-            
-        }
-        #wishbutton{
-            width: 39px;
-            height: 39px;
-            border-radius: 100px;
-            background-color: rgb(5, 5, 219);
-            color: white;
-          
+            cursor: pointer;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
         }
 
-        #cartbutton:hover,
+        /* Specific styles */
+        #cartbutton {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+
+        #wishbutton {
+            background: linear-gradient(135deg, #ff4b5c, #b30021);
+        }
+
+        /* Hover effects */
+        #cartbutton:hover {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            transform: scale(1.2) rotate(5deg);
+            box-shadow: 0px 8px 20px rgba(0, 0, 255, 0.4);
+        }
+
         #wishbutton:hover {
-            background-color: rgb(12, 1, 1);
-            color: rgb(233, 219, 219);
-            transform: scale(1.3);
-            transition: 2s;
+            background: linear-gradient(135deg, #b30021, #ff4b5c);
+            transform: scale(1.2) rotate(-5deg);
+            box-shadow: 0px 8px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        /* To position them neatly */
+        .upper button {
+            margin-left: 10px;
         }
     </style>
 </head>
 
 <body>
     <div class="upper">
-        <div class="txt"> 🛒 </div>
-    <div><button id="cartbutton"> Cart </button><button id="wishbutton" class="w"> ❤️ </button></div>
+        <div class="txt"> Welcome to Fashion Fizz </div>
+        <div><button id="cartbutton"> 🛒 </button><button id="wishbutton" class="w"> ❤️ </button></div>
     </div>
     <div class="container">
 
@@ -161,9 +180,11 @@
     })
 
     let wishbtn = document.querySelector("#wishbutton")
-    wishbtn.addEventListener("click" , ()=> {
-        window.location.href ='wish.html'
+    wishbtn.addEventListener("click", () => {
+        window.location.href = 'wish.html'
     })
+
+    
 </script>
 
 </html>
