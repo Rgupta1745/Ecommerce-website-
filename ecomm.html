@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASHION WEBSITE </title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+        }
+        .upper{
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+        .txt {
+            font-size: 100px;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+
+        }
+
+        #bx {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            border: 2px solid rgb(56, 4, 4);
+            border-radius: 30px;
+        }
+
+        button {
+            width: 100px;
+            height: 30px;
+            border-radius: 30px;
+            border: transparent;
+            background-color: bisque;
+        }
+
+        button:hover {
+            background-color: rgb(151, 14, 14);
+            color: bisque;
+            transform: scale(1.3);
+            transition: 2s;
+        }
+
+        #cartbutton{
+            width: 39px;
+            height: 39px;
+            border-radius: 100px;
+            background-color: rgb(5, 5, 219);
+            color: white;
+            
+        }
+        #wishbutton{
+            width: 39px;
+            height: 39px;
+            border-radius: 100px;
+            background-color: rgb(5, 5, 219);
+            color: white;
+          
+        }
+
+        #cartbutton:hover,
+        #wishbutton:hover {
+            background-color: rgb(12, 1, 1);
+            color: rgb(233, 219, 219);
+            transform: scale(1.3);
+            transition: 2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="upper">
+        <div class="txt"> 🛒 </div>
+    <div><button id="cartbutton"> Cart </button><button id="wishbutton" class="w"> ❤️ </button></div>
+    </div>
+    <div class="container">
+
+    </div>
+
+
+</body>
+<script>
+    let api = "https://fakestoreapi.com/products"
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    console.log(cart);
+
+    let wish = JSON.parse(localStorage.getItem("wishlisted")) || [];
+    fetch(api)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            displayData(data)
+        })
+        .catch((err) => console.log(err))
+
+    function displayData(array) {
+        array.forEach(element => {
+            // console.log(element.id);
+
+            const box = document.createElement("div");
+            box.setAttribute("id", "bx")
+
+            let image = document.createElement("img")
+            image.setAttribute("src", element.image)
+
+            let price = document.createElement("h3")
+            price.innerText = 'Price:' + element.price;
+
+            let title = document.createElement("h3")
+            title.innerText = 'Title:' + element.title;
+
+            let id = document.createElement("h3")
+            id.innerText = 'ID:' + element.id;
+
+            let description = document.createElement("h3")
+            description.innerText = 'Description:' + element.description;
+
+            let addToCart = document.createElement("button")
+            addToCart.innerText = " ADD TO CART "
+            addToCart.addEventListener("click", () => {
+                cart.push(element)
+                localStorage.setItem("cartItems", JSON.stringify(cart))
+                alert("item is added")
+            })
+
+            let wishlisted = document.createElement("button");
+            wishlisted.innerText = " ❤️wishlist"
+            wishlisted.addEventListener("click", () => {
+                wish.push(element)
+                localStorage.setItem("wishlisted", JSON.stringify(wish))
+                alert("added to wishlist ")
+            })
+
+            box.append(image, price, title, id, description, addToCart, wishlisted);
+            document.querySelector(".container").append(box);
+        });
+    }
+
+    let cartBtn = document.querySelector("#cartbutton")
+    cartBtn.addEventListener("click", () => {
+        //direct cart button pr click kre to cart.html pr chale jaye 
+        //use 
+        window.location.href = 'cart.html';
+    })
+
+    let wishbtn = document.querySelector("#wishbutton")
+    wishbtn.addEventListener("click" , ()=> {
+        window.location.href ='wish.html'
+    })
+</script>
+
+</html>
