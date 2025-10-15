@@ -5,103 +5,239 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FASHION WEBSITE </title>
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
+     <style>
+        /* 🌸 RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 
-        body {
-            width: 100%;
-            height: 100vh;
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #fafafa, #f0f4f8);
+    color: #222;
+}
 
-        }
+/* 🌈 HEADER / UPPER SECTION */
+.upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+    /* background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 35%, #fad0c4 100%); */
+    background-color: #614419;
+    color: white;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0px 8px 25px rgba(255, 120, 150, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    transition: background 0.5s ease-in-out;
+}
 
-        .upper {
-            display: flex;
-            justify-content: center;
-            gap: 100px;
-        }
+.upper:hover {
+    /* background: linear-gradient(90deg, #fad0c4 0%, #ff9a9e 40%, #fbc2eb 100%); */
+    background-color: #B37E2E;
+}
 
-        .txt {
-            font-size: 100px;
-            text-align: center;
-        }
 
-        .container {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+.txt {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
 
-        }
+.txt:hover {
+    transform: scale(1.05);
+    color: #fffbea;
+}
 
-        #bx {
-            width: 100%;
-            height: auto;
-            text-align: center;
-            border: 2px solid rgb(56, 4, 4);
-            border-radius: 30px;
-        }
+/* 🛒 CART & ❤️ WISHLIST BUTTONS */
+#cartbutton,
+#wishbutton {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    font-size: 22px;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
 
-        button {
-            width: 100px;
-            height: 30px;
-            border-radius: 30px;
-            border: transparent;
-            background-color: bisque;
-        }
+#wishbutton {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
 
-        button:hover {
-            background-color: rgb(151, 14, 14);
-            color: bisque;
-            transform: scale(1.3);
-            transition: 2s;
-        }
+#cartbutton:hover {
+    transform: scale(1.2) rotate(6deg);
+    box-shadow: 0px 10px 25px rgba(37, 117, 252, 0.5);
+}
 
-        /* Common style for both buttons */
-        #cartbutton,
-        #wishbutton {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: none;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-        }
+#wishbutton:hover {
+    transform: scale(1.2) rotate(-6deg);
+    box-shadow: 0px 10px 25px rgba(255, 75, 92, 0.5);
+}
 
-        /* Specific styles */
-        #cartbutton {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-        }
+/* 🔍 SEARCH BAR */
+#search {
+    display: block;
+    width: 60%;
+    margin: 40px auto;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
 
-        #wishbutton {
-            background: linear-gradient(135deg, #ff4b5c, #b30021);
-        }
+#search:focus {
+    box-shadow: 0 0 25px rgba(165, 42, 42, 0.4); /* brown shade */
+    transform: scale(1.03);
+}
 
-        /* Hover effects */
-        #cartbutton:hover {
-            background: linear-gradient(135deg, #0056b3, #007bff);
-            transform: scale(1.2) rotate(5deg);
-            box-shadow: 0px 8px 20px rgba(0, 0, 255, 0.4);
-        }
 
-        #wishbutton:hover {
-            background: linear-gradient(135deg, #b30021, #ff4b5c);
-            transform: scale(1.2) rotate(-5deg);
-            box-shadow: 0px 8px 20px rgba(255, 0, 0, 0.4);
-        }
 
-        /* To position them neatly */
-        .upper button {
-            margin-left: 10px;
-        }
-    </style>
+/* 🧱 PRODUCT GRID */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+    padding: 40px 60px;
+}
+
+/* 🛍️ PRODUCT CARD */
+#bx {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#bx:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* 👗 PRODUCT IMAGE */
+#bx img {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: transform 0.4s ease;
+}
+
+#bx:hover img {
+    transform: scale(1.1);
+}
+
+/* 🏷️ PRODUCT DETAILS */
+#bx h3 {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+/* Price */
+#bx h3:first-of-type {
+    color: #6a11cb;
+    font-weight: 700;
+}
+
+/* Title (eye-catching color) */
+#bx h3:nth-of-type(2) {
+    color: #ff4b5c;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+/* ID */
+#bx h3:nth-of-type(3) {
+    color: #888;
+}
+
+/* Description */
+#bx h3:nth-of-type(4) {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+/* ✨ CARD BUTTONS */
+#bx button {
+    width: 140px;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 8px 6px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+#bx button:first-of-type {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+#bx button:first-of-type:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(37, 117, 252, 0.5);
+}
+
+#bx button:nth-of-type(2) {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+#bx button:nth-of-type(2):hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(255, 75, 92, 0.5);
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+    .upper {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .txt {
+        font-size: 36px;
+    }
+
+    #search {
+        width: 80%;
+    }
+
+    .container {
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+     </style>
 </head>
 
 <body>
@@ -109,6 +245,10 @@
         <div class="txt"> Welcome to Fashion Fizz </div>
         <div><button id="cartbutton"> 🛒 </button><button id="wishbutton" class="w"> ❤️ </button></div>
     </div>
+    <hr>
+    <input type="text" id="search" oninput="search()" placeholder=" 🔍 search">
+
+    <hr>
     <div class="container">
 
     </div>
@@ -117,14 +257,18 @@
 </body>
 <script>
     let api = "https://fakestoreapi.com/products"
+    
     let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-    console.log(cart);
+    // console.log(cart); 
 
     let wish = JSON.parse(localStorage.getItem("wishlisted")) || [];
+
+    let bag =[];
     fetch(api)
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
+            bag = data;
             displayData(data)
         })
         .catch((err) => console.log(err))
@@ -151,6 +295,8 @@
             let description = document.createElement("h3")
             description.innerText = 'Description:' + element.description;
 
+            let hr = document.createElement("hr")
+
             let addToCart = document.createElement("button")
             addToCart.innerText = " ADD TO CART "
             addToCart.addEventListener("click", () => {
@@ -167,7 +313,7 @@
                 alert("added to wishlist ")
             })
 
-            box.append(image, price, title, id, description, addToCart, wishlisted);
+            box.append(image, price, title, id, description , hr , addToCart, wishlisted);
             document.querySelector(".container").append(box);
         });
     }
@@ -184,7 +330,12 @@
         window.location.href = 'wish.html'
     })
 
-
+    let query = document.querySelector("#search").value
+    const searchData = bag.filter((el) => {
+        return el.title.toLowerCase().includes(query.toLowerCase());
+    })
+    console.log(searchData);
+    
 
 </script>
 
