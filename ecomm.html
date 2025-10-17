@@ -246,7 +246,7 @@ body {
         <div><button id="cartbutton"> 🛒 </button><button id="wishbutton" class="w"> ❤️ </button></div>
     </div>
     <hr>
-    <input type="text" id="search" oninput="search()" placeholder=" 🔍 search">
+    <input type="text" id="search" oninput="search()" placeholder= " 🔍 search">
 
     <hr>
     <div class="container">
@@ -259,21 +259,21 @@ body {
     let api = "https://fakestoreapi.com/products"
     
     let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-    // console.log(cart); 
-
     let wish = JSON.parse(localStorage.getItem("wishlisted")) || [];
+    // console.log(cart); 
 
     let bag =[];
     fetch(api)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             bag = data;
             displayData(data)
         })
         .catch((err) => console.log(err))
 
     function displayData(array) {
+        document.querySelector(".container").innerText=""
         array.forEach(element => {
             // console.log(element.id);
 
@@ -312,31 +312,36 @@ body {
                 localStorage.setItem("wishlisted", JSON.stringify(wish))
                 alert("added to wishlist ")
             })
-
+            
             box.append(image, price, title, id, description , hr , addToCart, wishlisted);
             document.querySelector(".container").append(box);
         });
     }
-
+    
     let cartBtn = document.querySelector("#cartbutton")
     cartBtn.addEventListener("click", () => {
         //direct cart button pr click kre to cart.html pr chale jaye 
         //use 
         window.location.href = 'cart.html';
     })
-
+    
     let wishbtn = document.querySelector("#wishbutton")
     wishbtn.addEventListener("click", () => {
         window.location.href = 'wish.html'
     })
-
-    let query = document.querySelector("#search").value
-    const searchData = bag.filter((el) => {
-        return el.title.toLowerCase().includes(query.toLowerCase());
-    })
-    console.log(searchData);
     
-
+    
+    
+function search(){
+    let query = document.querySelector("#search").value
+    
+      
+    let searchData = bag.filter((el) => {
+        return el.title.toLowerCase().includes(query.toLowerCase());
+    });
+    console.log(searchData);
+    displayData(searchData)
+}
 </script>
 
 </html>

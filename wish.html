@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        body {
             width: 100%;
             height: 100%;
-            
+
         }
-        .txt{
+
+        .txt {
             text-align: center;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 60px ;
+            font-size: 60px;
             color: brown;
         }
+
         .container {
             width: 100%;
             height: 100%;
@@ -23,37 +26,47 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 30px;
         }
-         #bx {
+
+        #bx {
             width: 100%;
             height: 100%;
             text-align: center;
             border: 2px solid rgb(56, 4, 4);
             border-radius: 30px;
             /* background-color: black; */
-            
+
+        }
+
+        #button{
+             width: 200px;
+             height: 50px;
+             border-radius: 30px;
+             background-color: rgb(204, 214, 214);
+             border: 2
         }
     </style>
 </head>
+
 <body>
     <div class="txt">
-        Your WishListed Items 
+        Your WishListed Items
     </div>
 
     <div class="container">
-    <!--  appemd your code here -->
+        <!--  appemd your code here -->
     </div>
 </body>
 <script>
     let wish = JSON.parse(localStorage.getItem("wishlisted"))
     displayTable(wish)
 
-    function displayTable(array){
-        document.querySelector(".container").innerHTML =""
-        array.forEach((element,i)=> {
+    function displayTable(array) {
+        document.querySelector(".container").innerHTML = ""
+        array.forEach((element, i) => {
             let box = document.createElement("div")
 
             let image = document.createElement("img")
-            image.setAttribute("src" , element.image)
+            image.setAttribute("src", element.image)
 
             let price = document.createElement("h3")
             price.innerText = 'Price:' + element.price;
@@ -68,16 +81,18 @@
             description.innerText = 'Description:' + element.description;
 
             let remove = document.createElement("button")
-            remove.innerText="Remove from wish list "
-            remove.addEventListener("click" , ()=>{
-                wish.splice(i,1)
-                localStorage.setItem("wishlisted" , JSON.stringify(wish))
+            remove.setAttribute("id", "button")
+            remove.innerText = "Remove from wishlist "
+            remove.addEventListener("click", () => {
+                wish.splice(i, 1)
+                localStorage.setItem("wishlisted", JSON.stringify(wish))
                 displayTable(wish)
             })
 
-            box.append(image , price , title , id , description , remove)
+            box.append(image, price, title, id, description, remove)
             document.querySelector(".container").append(box)
         });
     }
 </script>
+
 </html>
